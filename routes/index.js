@@ -5,7 +5,7 @@ const {Wish} = require('../model/schema');
 router.use(express.static('../public'))
 
 /* GET home page. */
-router.get('/index/6241cfe06798b7bfe4c4e01d', function(req, res, next) {
+router.get('/index/624349186d3327b73a4f5278', function(req, res, next) {
   res.sendFile(path.resolve('../public/index.html'))
 });
 
