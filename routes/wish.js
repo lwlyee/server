@@ -14,6 +14,7 @@ router.get('/getWish', function(req, res) {
       "_id": req.query.visitUserId
     }, function(err, doc){
       if(err) res.json({statu:1, err: err})
+      if(!doc[0].wishList) res.json({statu:1, err: '信息有误'})
       if(req.query.visitUserId !== req.query.userId){
         doc[0].wishList = doc[0].wishList.filter((item) => {
           return item.isHidden === false
