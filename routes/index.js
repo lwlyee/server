@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {Wish} = require('../model/schema');
 
+
 router.use(express.static('../public'))
 
 /* GET home page. */
