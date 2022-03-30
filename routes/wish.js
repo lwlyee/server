@@ -13,14 +13,18 @@ router.get('/getWish', function(req, res) {
     Wish.find({
       "_id": req.query.visitUserId
     }, function(err, doc){
+      console.log(doc)
       if(err) res.json({statu:1, err: err})
-      if(doc && !doc[0].wishList) res.json({statu:1, err: '信息有误'})
-      if(req.query.visitUserId !== req.query.userId){
-        doc[0].wishList = doc[0].wishList.filter((item) => {
-          return item.isHidden === false
-        })
+      if(doc.length === 0){
+        res.json({statu:1, err: '信息有误'})
+      }else{
+        if(req.query.visitUserId !== req.query.userId){
+          doc[0].wishList = doc[0].wishList.filter((item) => {
+            return item.isHidden === false
+          })
+        }
+        res.json({statu: 0, doc:doc[0].wishList, isFirst: doc[0].isFirst})
       }
-      res.json({statu: 0, doc:doc[0].wishList, isFirst: doc[0].isFirst})
     })
 });
 
